@@ -1,0 +1,28 @@
+=====================================================
+HOW TO ADD YOUR PHOTOS FOR PRANAMYA'S BIRTHDAY SLIDES
+=====================================================
+
+1. Location to put your photos:
+   Folder: d:\abhith\valentine-yes-no-moving-button\slides\
+
+2. File naming format:
+   Name each image starting with the number (1 to 6), followed by your tagline!
+   
+   Examples:
+   - 1The Day We Met.jpg          -> Tagline shown: "The Day We Met"
+   - 2Our First Coffee Date.png   -> Tagline shown: "Our First Coffee Date"
+   - 3Always Laughing Together.jpg-> Tagline shown: "Always Laughing Together"
+   - 4Late Night Adventures.png   -> Tagline shown: "Late Night Adventures"
+   - 5Forever My Favorite.jpg     -> Tagline shown: "Forever My Favorite"
+   - 6To A Lifetime of Joy.jpg    -> Tagline shown: "To A Lifetime of Joy"
+
+3. Supported image formats:
+   .jpg, .jpeg, .png, .webp, .gif
+
+4. Automatic update:
+   Whenever you add or change photos in this folder, you can run:
+      python update_manifest.py
+   
+   The app will automatically read your photos and display your tagline 
+   as burning, glowing handwritten calligraphy on the old parchment note!
+=====================================================
