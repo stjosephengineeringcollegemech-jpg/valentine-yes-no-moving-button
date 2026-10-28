@@ -229,12 +229,12 @@
         max-width: 90%;
       }
 
-      /* 3D PROXIMITY-GLOW HEART SYMBOL */
+      /* 3D PROXIMITY-GLOW HEART SYMBOL (ENLARGED & MAJESTIC) */
       .heart-proximity-stage {
         position: relative;
-        width: 150px;
-        height: 140px;
-        margin: 8px 0 20px;
+        width: 250px;
+        height: 230px;
+        margin: 10px 0 24px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -243,21 +243,21 @@
 
       .heart-halo {
         position: absolute;
-        width: 160px;
-        height: 160px;
+        width: 320px;
+        height: 320px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255, 51, 102, 0.5) 0%, rgba(255, 209, 102, 0.25) 45%, transparent 70%);
+        background: radial-gradient(circle, rgba(255, 51, 102, 0.7) 0%, rgba(255, 117, 140, 0.45) 35%, rgba(255, 209, 102, 0.35) 60%, transparent 75%);
         pointer-events: none;
-        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-        opacity: 0.3;
-        transform: scale(0.9);
+        transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+        opacity: 0.35;
+        transform: scale(0.92);
       }
 
       .heart-svg {
-        width: 120px;
-        height: 120px;
+        width: 205px;
+        height: 205px;
         transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease-out;
-        filter: drop-shadow(0 0 12px rgba(255, 51, 102, 0.45));
+        filter: drop-shadow(0 15px 35px rgba(255, 51, 102, 0.55)) drop-shadow(0 0 25px rgba(255, 209, 102, 0.4));
         animation: gentleHeartbeat 2.8s infinite ease-in-out;
       }
 
@@ -266,6 +266,18 @@
         15% { transform: scale(1.08); }
         30% { transform: scale(1); }
         45% { transform: scale(1.05); }
+      }
+
+      /* Screen shake impact on balloon pop bang */
+      .pop-shake {
+        animation: quickPopShake 0.18s ease-in-out;
+      }
+
+      @keyframes quickPopShake {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(-4px, 3px); }
+        50% { transform: translate(4px, -3px); }
+        75% { transform: translate(-2px, -1px); }
       }
 
       /* Question text */
@@ -1552,6 +1564,9 @@
       }
 
       @media (max-width: 600px) {
+        .heart-proximity-stage { width: 190px; height: 175px; }
+        .heart-svg { width: 155px; height: 155px; }
+        .heart-halo { width: 240px; height: 240px; }
         .envelope-wrapper { width: 280px; height: 185px; }
         .envelope-flap { height: 115px; }
         .wax-seal { width: 50px; height: 50px; top: 90px; }
@@ -1596,32 +1611,50 @@
           Today is dedicated to celebrating the most wonderful, charming, and radiant person in the room. ✨
         </p>
 
-        <!-- 3D PROXIMITY-GLOW HEART SYMBOL -->
+        <!-- 3D PROXIMITY-GLOW HEART SYMBOL (ENLARGED) -->
         <div class="heart-proximity-stage" id="heartContainer" title="A heart full of love for Pranamya!">
           <div class="heart-halo" id="heartHalo"></div>
           <svg class="heart-svg" id="heartSvg" viewBox="0 0 100 100">
             <defs>
               <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#ff758c" />
-                <stop offset="45%" stop-color="#ff3366" />
-                <stop offset="100%" stop-color="#b5179e" />
+                <stop offset="35%" stop-color="#ff2a6d" />
+                <stop offset="70%" stop-color="#d90429" />
+                <stop offset="100%" stop-color="#7209b7" />
               </linearGradient>
               <linearGradient id="heartShine" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+              </linearGradient>
+              <linearGradient id="goldCrownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff3b0" />
+                <stop offset="60%" stop-color="#ffd166" />
+                <stop offset="100%" stop-color="#f39c12" />
               </linearGradient>
             </defs>
 
+            <!-- Main Big 3D Heart -->
             <path
               d="M50,88 C20,68 4,50 4,30 C4,14 16,3 32,3 C40,3 47,8 50,15 C53,8 60,3 68,3 C84,3 96,14 96,30 C96,50 80,68 50,88 Z"
               fill="url(#heartGrad)"
             />
+            <!-- Glossy 3D Highlight Curve -->
             <path
               d="M32,8 C20,8 11,17 11,29 C11,40 22,54 44,70 C41,60 36,44 32,32 C30,24 28,15 32,8 Z"
               fill="url(#heartShine)"
-              opacity="0.65"
+              opacity="0.75"
             />
-            <circle cx="50" cy="35" r="4" fill="#ffd166" opacity="0.9" />
+            <!-- Golden Royal Crown atop Heart Center -->
+            <path
+              d="M39,32 L44,38 L50,29 L56,38 L61,32 L58,43 L42,43 Z"
+              fill="url(#goldCrownGrad)"
+              filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"
+            />
+            <!-- Sparkle Jewels on Crown -->
+            <circle cx="39" cy="32" r="1.8" fill="#ffffff" />
+            <circle cx="50" cy="29" r="2.2" fill="#ffffff" />
+            <circle cx="61" cy="32" r="1.8" fill="#ffffff" />
+            <circle cx="50" cy="50" r="3.4" fill="#ffd166" opacity="0.95" filter="drop-shadow(0 0 5px #ffd166)" />
           </svg>
         </div>
 
