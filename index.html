@@ -280,6 +280,16 @@
         75% { transform: translate(-2px, -1px); }
       }
 
+      /* Radiant celebration when heart glows brightest and streams confetti */
+      .heart-proximity-stage.streaming-confetti .heart-svg {
+        animation: heartRadiance 0.55s infinite alternate ease-in-out !important;
+      }
+
+      @keyframes heartRadiance {
+        from { transform: scale(1.18); filter: drop-shadow(0 0 35px #ff3366) drop-shadow(0 0 50px #ffd166); }
+        to { transform: scale(1.26); filter: drop-shadow(0 0 55px #ff0055) drop-shadow(0 0 70px #ffd166); }
+      }
+
       /* Question text */
       .question {
         font-size: 1.45rem;
@@ -1563,6 +1573,262 @@
         50% { box-shadow: 0 14px 35px rgba(255, 51, 102, 0.6), 0 0 30px rgba(255, 209, 102, 0.45); }
       }
 
+      /* ================= GRAND FINALE: CUTE CAKE & RAINING HEARTS ================= */
+      .finale-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 10005;
+        background: radial-gradient(circle at 50% 20%, #460d52 0%, #20042a 50%, #0d0114 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto;
+        overflow-x: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: scale(0.96);
+      }
+
+      .finale-screen.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+
+      /* Fullscreen Canvas for Raining Hearts & Glitter */
+      .raining-hearts-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .finale-ambient-glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 51, 102, 0.35) 0%, rgba(255, 209, 102, 0.2) 45%, transparent 70%);
+        pointer-events: none;
+        z-index: 1;
+        animation: ambientBreathe 5s infinite alternate ease-in-out;
+      }
+
+      @keyframes ambientBreathe {
+        from { transform: scale(0.9) translate(-50%, -50%); opacity: 0.7; }
+        to { transform: scale(1.15) translate(-50%, -50%); opacity: 1; }
+      }
+
+      .finale-card {
+        position: relative;
+        z-index: 2;
+        max-width: 680px;
+        width: 92%;
+        margin: auto;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .finale-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 22px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 209, 102, 0.5);
+        border-radius: 999px;
+        color: #ffd166;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 20px rgba(255, 209, 102, 0.3);
+      }
+
+      /* HUGE TEXT: LOTS OF LOVE */
+      .huge-love-title {
+        font-family: 'Great Vibes', 'Rustic Roadway', cursive;
+        font-size: clamp(4.4rem, 11vw, 7.5rem);
+        line-height: 1.05;
+        margin: 2px 0;
+        background: linear-gradient(135deg, #ffffff 0%, #ffe0ea 30%, #ff758c 65%, #ffd166 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 25px rgba(255, 51, 102, 0.7)) drop-shadow(0 0 50px rgba(255, 209, 102, 0.45));
+        animation: loveGlowPulse 2.8s infinite alternate ease-in-out;
+        user-select: none;
+      }
+
+      @keyframes loveGlowPulse {
+        from { transform: scale(1); filter: drop-shadow(0 0 25px rgba(255, 51, 102, 0.6)) drop-shadow(0 0 40px rgba(255, 209, 102, 0.35)); }
+        to { transform: scale(1.03); filter: drop-shadow(0 0 35px rgba(255, 51, 102, 0.85)) drop-shadow(0 0 60px rgba(255, 209, 102, 0.6)); }
+      }
+
+      .huge-love-name {
+        font-family: 'Rustic Roadway', 'Dancing Script', cursive;
+        font-size: clamp(2.4rem, 6.5vw, 3.8rem);
+        color: #ffd166;
+        margin-bottom: 14px;
+        text-shadow: 0 0 20px rgba(255, 209, 102, 0.8), 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .finale-subtitle {
+        font-size: 1.15rem;
+        font-weight: 300;
+        color: #f7e8ff;
+        max-width: 540px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Cute Kawaii Cake Container */
+      .cute-cake-wrapper {
+        position: relative;
+        width: 260px;
+        height: 270px;
+        margin: 10px 0 20px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: cuteCakeBounce 3s infinite ease-in-out;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        user-select: none;
+      }
+
+      .cute-cake-wrapper:hover {
+        transform: scale(1.08) translateY(-6px);
+      }
+
+      .cute-cake-wrapper.tapped {
+        animation: cakeTapJump 0.4s ease-out;
+      }
+
+      @keyframes cuteCakeBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+      }
+
+      @keyframes cakeTapJump {
+        0% { transform: scale(1) translateY(0); }
+        35% { transform: scale(1.22) translateY(-22px) rotate(-4deg); }
+        70% { transform: scale(0.95) translateY(4px) rotate(2deg); }
+        100% { transform: scale(1) translateY(0); }
+      }
+
+      .cute-cake-halo {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 117, 140, 0.45) 0%, rgba(255, 209, 102, 0.25) 50%, transparent 75%);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .cute-cake-svg {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+      }
+
+      .cute-flame {
+        animation: cuteFlameFlicker 1.4s infinite alternate ease-in-out;
+        transform-origin: 120px 50px;
+      }
+
+      @keyframes cuteFlameFlicker {
+        0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 10px #ff9f43); }
+        100% { transform: scale(1.15) rotate(4deg); filter: drop-shadow(0 0 18px #ff4757); }
+      }
+
+      .floating-flame-heart {
+        animation: floatFlameHeart 2.2s infinite ease-in-out;
+      }
+
+      @keyframes floatFlameHeart {
+        0%, 100% { transform: translateY(0); opacity: 0.8; }
+        50% { transform: translateY(-6px); opacity: 1; filter: drop-shadow(0 0 6px #ff758c); }
+      }
+
+      .cute-cake-hint {
+        margin-top: 6px;
+        font-size: 0.95rem;
+        color: #ffd166;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 209, 102, 0.3);
+        padding: 6px 16px;
+        border-radius: 999px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+      }
+
+      /* Finale Actions Bar */
+      .finale-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        z-index: 2;
+      }
+
+      .finale-btn {
+        background: linear-gradient(135deg, #ff3366, #c2185b);
+        color: #ffffff;
+        border: none;
+        padding: 13px 26px;
+        border-radius: 999px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.02rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4), 0 0 15px rgba(255, 209, 102, 0.2);
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      }
+
+      .finale-btn:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 12px 30px rgba(255, 51, 102, 0.6), 0 0 25px rgba(255, 209, 102, 0.4);
+      }
+
+      .finale-btn.secondary {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .finale-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: #ffd166;
+        box-shadow: 0 8px 25px rgba(255, 209, 102, 0.3);
+      }
+
+      .finale-btn.gold {
+        background: linear-gradient(135deg, #ffd166, #f39c12);
+        color: #2c0e18;
+        box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
+      }
+
+      .finale-btn.gold:hover {
+        box-shadow: 0 12px 30px rgba(255, 209, 102, 0.65);
+      }
+
       @media (max-width: 600px) {
         .heart-proximity-stage { width: 190px; height: 175px; }
         .heart-svg { width: 155px; height: 155px; }
@@ -1573,6 +1839,11 @@
         .parchment-border-inner { padding: 20px 16px; }
         .letter-content { font-size: 1.35rem; line-height: 1.45; }
         .letter-footer { justify-content: center; }
+        .huge-love-title { font-size: 4.2rem; }
+        .huge-love-name { font-size: 2.2rem; }
+        .cute-cake-wrapper { width: 220px; height: 230px; }
+        .finale-actions { flex-direction: column; width: 100%; }
+        .finale-btn { width: 100%; max-width: 280px; }
       }
     </style>
   </head>
@@ -1992,10 +2263,7 @@
                 </div>
                 <div class="letter-actions">
                   <button class="letter-btn" id="closeLetterBtn">
-                    <span>💌 Keep Letter Safe</span>
-                  </button>
-                  <button class="letter-btn secondary" id="refoldLetterBtn">
-                    <span>↺ Fold Again</span>
+                    <span>💌 Keep Letter Safe & Continue ✨</span>
                   </button>
                 </div>
               </div>
@@ -2005,18 +2273,184 @@
       </div>
     </div>
 
+    <!-- ================= GRAND FINALE: CUTE CAKE & RAINING HEARTS ================= -->
+    <div class="finale-screen" id="finaleScreen">
+      <!-- Fullscreen Raining Hearts and Glitter Canvas -->
+      <canvas class="raining-hearts-canvas" id="rainingHeartsCanvas"></canvas>
+
+      <!-- Ambient Glow Aurora Layer -->
+      <div class="finale-ambient-glow"></div>
+
+      <!-- Main Finale Content Card -->
+      <div class="finale-card">
+        <!-- Top Sweet Badge -->
+        <div class="finale-badge">
+          <span>💖</span>
+          <span>A Special Birthday Wish</span>
+          <span>✨</span>
+        </div>
+
+        <!-- Huge Text: LOTS OF LOVE -->
+        <h1 class="huge-love-title">LOTS OF LOVE</h1>
+        <div class="huge-love-name">Pranamya ❤️</div>
+
+        <p class="finale-subtitle">
+          May your life always be filled with boundless laughter, sparkling dreams, and endless sweetness! ✨🎂
+        </p>
+
+        <!-- Cute Kawaii Birthday Cake -->
+        <div class="cute-cake-wrapper" id="cuteCakeWrapper" title="Tap the cute cake for love & sparkles!">
+          <div class="cute-cake-halo"></div>
+
+          <svg class="cute-cake-svg" viewBox="0 0 240 250">
+            <defs>
+              <linearGradient id="cutePlateGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ffeaa7" />
+                <stop offset="50%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#fdcb6e" />
+              </linearGradient>
+
+              <linearGradient id="cuteTierGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffb3c6" />
+                <stop offset="50%" stop-color="#ff8da1" />
+                <stop offset="100%" stop-color="#ff6b8b" />
+              </linearGradient>
+
+              <linearGradient id="cuteFrostingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#fff5eb" />
+              </linearGradient>
+
+              <linearGradient id="cuteStrawberryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff4757" />
+                <stop offset="100%" stop-color="#ee5253" />
+              </linearGradient>
+
+              <linearGradient id="cuteCandleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ffd166" />
+                <stop offset="35%" stop-color="#ff9ff3" />
+                <stop offset="70%" stop-color="#54a0ff" />
+                <stop offset="100%" stop-color="#ffd166" />
+              </linearGradient>
+
+              <radialGradient id="cuteFlameGrad" cx="40%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="40%" stop-color="#ffeaa7" />
+                <stop offset="80%" stop-color="#ff9f43" />
+                <stop offset="100%" stop-color="#ee5253" />
+              </radialGradient>
+            </defs>
+
+            <!-- Plate / Dish -->
+            <ellipse cx="120" cy="222" rx="95" ry="16" fill="url(#cutePlateGrad)" />
+            <ellipse cx="120" cy="220" rx="82" ry="11" fill="#ffffff" opacity="0.6" />
+
+            <!-- Cake Tier Body -->
+            <rect x="45" y="125" width="150" height="90" rx="22" fill="url(#cuteTierGrad)" />
+
+            <!-- Cream Frosting Drips -->
+            <path d="M45,142 Q58,168 70,142 Q83,174 97,142 Q110,165 120,142 Q132,175 145,142 Q158,166 170,142 Q183,170 195,142 L195,125 L45,125 Z" fill="url(#cuteFrostingGrad)" />
+
+            <!-- Kawaii Smiling Face -->
+            <!-- Cute Big Eyes -->
+            <ellipse cx="88" cy="178" rx="6.5" ry="8.5" fill="#2d3436" />
+            <circle cx="86" cy="175" r="2.8" fill="#ffffff" />
+            <circle cx="90" cy="180" r="1.4" fill="#ffffff" />
+
+            <ellipse cx="152" cy="178" rx="6.5" ry="8.5" fill="#2d3436" />
+            <circle cx="150" cy="175" r="2.8" fill="#ffffff" />
+            <circle cx="154" cy="180" r="1.4" fill="#ffffff" />
+
+            <!-- Rosy Blushing Cheeks -->
+            <ellipse cx="73" cy="184" rx="8" ry="4.5" fill="#ff4757" opacity="0.6" />
+            <ellipse cx="167" cy="184" rx="8" ry="4.5" fill="#ff4757" opacity="0.6" />
+
+            <!-- Happy Smile -->
+            <path d="M112,180 Q120,190 128,180" stroke="#2d3436" stroke-width="3.2" fill="none" stroke-linecap="round" />
+
+            <!-- Rainbow Sprinkles on Frosting -->
+            <rect x="58" y="132" width="6" height="3" rx="1.5" fill="#ffd166" transform="rotate(20 58 132)" />
+            <rect x="85" y="135" width="6" height="3" rx="1.5" fill="#54a0ff" transform="rotate(-30 85 135)" />
+            <rect x="115" y="132" width="6" height="3" rx="1.5" fill="#1dd1a1" transform="rotate(15 115 132)" />
+            <rect x="145" y="136" width="6" height="3" rx="1.5" fill="#ff9ff3" transform="rotate(-25 145 136)" />
+            <rect x="175" y="133" width="6" height="3" rx="1.5" fill="#ffd166" transform="rotate(35 175 133)" />
+
+            <!-- Cream Dollop Swirls on Top -->
+            <ellipse cx="70" cy="122" rx="14" ry="10" fill="#ffffff" />
+            <ellipse cx="170" cy="122" rx="14" ry="10" fill="#ffffff" />
+
+            <!-- Center Glazed Strawberry -->
+            <path d="M120,116 C110,116 98,124 102,138 C106,148 120,158 120,158 C120,158 134,148 138,138 C142,124 130,116 120,116 Z" fill="url(#cuteStrawberryGrad)" />
+            <circle cx="114" cy="130" r="1.2" fill="#ffeaa7" />
+            <circle cx="122" cy="128" r="1.2" fill="#ffeaa7" />
+            <circle cx="126" cy="136" r="1.2" fill="#ffeaa7" />
+            <circle cx="118" cy="142" r="1.2" fill="#ffeaa7" />
+            <!-- Strawberry Leaf -->
+            <path d="M120,117 Q113,110 108,114 Q116,116 120,117 Q124,116 132,114 Q127,110 120,117 Z" fill="#10ac84" />
+
+            <!-- Birthday Candle -->
+            <rect x="116" y="60" width="8" height="56" rx="3" fill="url(#cuteCandleGrad)" />
+            <!-- Candle Wick -->
+            <line x1="120" y1="60" x2="120" y2="50" stroke="#333333" stroke-width="2" />
+
+            <!-- Animated Cute Flame -->
+            <path class="cute-flame" d="M120,50 C113,38 113,24 120,15 C127,24 127,38 120,50 Z" fill="url(#cuteFlameGrad)" />
+
+            <!-- Tiny Heart Sparkle floating above flame -->
+            <text x="113" y="10" font-size="12" fill="#ff758c" class="floating-flame-heart">💖</text>
+          </svg>
+
+          <div class="cute-cake-hint">🎂 Tap the cute cake for love & sparkles! 💕</div>
+        </div>
+
+        <!-- Finale Action Buttons -->
+        <div class="finale-actions">
+          <button class="finale-btn" id="finaleReopenLetterBtn">
+            <span>💌 Re-read Letter</span>
+          </button>
+          <button class="finale-btn secondary" id="finaleReplayMemoriesBtn">
+            <span>📖 Cherished Memories</span>
+          </button>
+          <button class="finale-btn gold" id="finaleShowerLoveBtn">
+            <span>💖 Shower More Love</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       // ================= AUDIO ENGINE =================
+      // ================= DEDICATED HIGH-FIDELITY AUDIO ENGINE =================
       let audioCtx = null;
+      let musicGainNode = null;
+      let sfxGainNode = null;
+      let masterGainNode = null;
+
       let soundEnabled = true;
       let musicPlaying = true; // Always ON by default!
-      let musicTimeout = null;
+      let isMusicLoopRunning = false;
+      let activeMusicTimeouts = [];
 
       function getAudioContext() {
         if (!audioCtx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           if (AudioContext) {
             audioCtx = new AudioContext();
+
+            // 1. Master Output Bus
+            masterGainNode = audioCtx.createGain();
+            masterGainNode.gain.setValueAtTime(1.0, audioCtx.currentTime);
+            masterGainNode.connect(audioCtx.destination);
+
+            // 2. Background Music Bus (crystal music box)
+            musicGainNode = audioCtx.createGain();
+            musicGainNode.gain.setValueAtTime(0.24, audioCtx.currentTime);
+            musicGainNode.connect(masterGainNode);
+
+            // 3. Sound Effects Bus
+            sfxGainNode = audioCtx.createGain();
+            sfxGainNode.gain.setValueAtTime(0.85, audioCtx.currentTime);
+            sfxGainNode.connect(masterGainNode);
           }
         }
         if (audioCtx && audioCtx.state === 'suspended') {
@@ -2025,37 +2459,94 @@
         return audioCtx;
       }
 
+      // Smooth Music Ducking during big sound effects (avoids overlapping clatter)
+      function duckMusic(duckLevel = 0.05, duration = 0.45) {
+        if (!audioCtx || !musicGainNode || !musicPlaying) return;
+        try {
+          const curr = audioCtx.currentTime;
+          musicGainNode.gain.cancelScheduledValues(curr);
+          musicGainNode.gain.setValueAtTime(duckLevel, curr);
+          musicGainNode.gain.linearRampToValueAtTime(0.24, curr + duration);
+        } catch (e) {}
+      }
+
+      // High-Fidelity Music Box / Celesta Bell Note Synthesis
+      function playMusicBoxBell(freq, duration = 0.85, velocity = 0.5) {
+        if (!musicPlaying) return;
+        try {
+          const ctx = getAudioContext();
+          if (!ctx || !musicGainNode) return;
+          const curr = ctx.currentTime;
+
+          // Acoustic bell envelope
+          const noteGain = ctx.createGain();
+          const targetVol = velocity * 0.45;
+          noteGain.gain.setValueAtTime(0.0001, curr);
+          noteGain.gain.linearRampToValueAtTime(targetVol, curr + 0.008);
+          noteGain.gain.exponentialRampToValueAtTime(0.0001, curr + duration);
+
+          // Warm acoustic lowpass filter
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(Math.min(3600, freq * 4.5), curr);
+
+          // Fundamental tone (warm sine)
+          const osc1 = ctx.createOscillator();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(freq, curr);
+
+          // 2nd overtone (crystal octave bell shimmer)
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(freq * 2, curr);
+          gain2.gain.setValueAtTime(0.32, curr);
+          osc2.connect(gain2);
+
+          // 3rd overtone (delicate silver overtone)
+          const osc3 = ctx.createOscillator();
+          const gain3 = ctx.createGain();
+          osc3.type = 'triangle';
+          osc3.frequency.setValueAtTime(freq * 3, curr);
+          gain3.gain.setValueAtTime(0.12, curr);
+          osc3.connect(gain3);
+
+          osc1.connect(noteGain);
+          gain2.connect(noteGain);
+          gain3.connect(noteGain);
+
+          noteGain.connect(filter);
+          filter.connect(musicGainNode);
+
+          osc1.start(curr);
+          osc2.start(curr);
+          osc3.start(curr);
+
+          osc1.stop(curr + duration + 0.05);
+          osc2.stop(curr + duration + 0.05);
+          osc3.stop(curr + duration + 0.05);
+        } catch (e) {}
+      }
+
+      // General SFX Tone
       function playTone(freq, duration, type = 'sine', gainVal = 0.28) {
         if (!soundEnabled) return;
         try {
           const ctx = getAudioContext();
-          if (!ctx) return;
+          if (!ctx || !sfxGainNode) return;
+          const curr = ctx.currentTime;
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
 
           osc.type = type;
-          osc.frequency.setValueAtTime(freq, ctx.currentTime);
-          gain.gain.setValueAtTime(gainVal, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+          osc.frequency.setValueAtTime(freq, curr);
+          gain.gain.setValueAtTime(gainVal, curr);
+          gain.gain.exponentialRampToValueAtTime(0.0001, curr + duration);
 
           osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + duration);
-
-          // Rich harmonic celesta layer for a full music-box presence
-          if (type === 'triangle' || type === 'sine') {
-            const osc2 = ctx.createOscillator();
-            const gain2 = ctx.createGain();
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(freq * 2, ctx.currentTime);
-            gain2.gain.setValueAtTime(gainVal * 0.35, ctx.currentTime);
-            gain2.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration * 0.7);
-            osc2.connect(gain2);
-            gain2.connect(ctx.destination);
-            osc2.start();
-            osc2.stop(ctx.currentTime + duration * 0.7);
-          }
+          gain.connect(sfxGainNode);
+          osc.start(curr);
+          osc.stop(curr + duration);
         } catch (e) {}
       }
 
@@ -2064,7 +2555,8 @@
         if (!soundEnabled) return;
         try {
           const ctx = getAudioContext();
-          if (!ctx) return;
+          if (!ctx || !sfxGainNode) return;
+          duckMusic(0.02, 0.9);
 
           // 1. Deep Sub-Bass Explosion Boom
           const subOsc = ctx.createOscillator();
@@ -2075,11 +2567,11 @@
           subGain.gain.setValueAtTime(0.95, ctx.currentTime);
           subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.7);
           subOsc.connect(subGain);
-          subGain.connect(ctx.destination);
+          subGain.connect(sfxGainNode);
           subOsc.start();
           subOsc.stop(ctx.currentTime + 0.7);
 
-          // 2. Powerful Explosive Noise Burst (party cannon / fireworks blast)
+          // 2. Powerful Explosive Noise Burst
           const bufferSize = Math.floor(ctx.sampleRate * 0.85);
           const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
           const data = buffer.getChannelData(0);
@@ -2100,7 +2592,7 @@
 
           noise.connect(filter);
           filter.connect(noiseGain);
-          noiseGain.connect(ctx.destination);
+          noiseGain.connect(sfxGainNode);
           noise.start();
           noise.stop(ctx.currentTime + 0.8);
 
@@ -2109,25 +2601,95 @@
         } catch (e) {}
       }
 
-      // Balloon pop sound (satisfying quick burst)
-      function playPopSound() {
+      // ================= BALLOON POP BANGS (REALISTIC PUNCH & SNAP) =================
+      function playBalloonPopBang(index) {
         if (!soundEnabled) return;
         try {
           const ctx = getAudioContext();
-          if (!ctx) return;
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(450, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.08);
+          if (!ctx || !sfxGainNode) return;
+          const curr = ctx.currentTime;
 
-          gain.gain.setValueAtTime(0.35, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+          // 1. Duck background music so the bang is crisp & punchy
+          duckMusic(0.04, 0.42);
 
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.08);
+          // 2. High-Pressure Rupture Crack (bandpass shaped noise burst)
+          const bufSize = Math.floor(ctx.sampleRate * 0.09);
+          const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+          const data = buf.getChannelData(0);
+          for (let i = 0; i < bufSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufSize * 0.26));
+          }
+          const noise = ctx.createBufferSource();
+          noise.buffer = buf;
+
+          const bpFilter = ctx.createBiquadFilter();
+          bpFilter.type = 'bandpass';
+          bpFilter.frequency.setValueAtTime(2100, curr);
+          bpFilter.Q.setValueAtTime(2.4, curr);
+
+          const snapGain = ctx.createGain();
+          snapGain.gain.setValueAtTime(1.15, curr);
+          snapGain.gain.exponentialRampToValueAtTime(0.001, curr + 0.09);
+
+          noise.connect(bpFilter);
+          bpFilter.connect(snapGain);
+          snapGain.connect(sfxGainNode);
+          noise.start(curr);
+          noise.stop(curr + 0.09);
+
+          // 3. Acoustic Sub-Bass Punch "BANG" (deep downward thump)
+          const thumpOsc = ctx.createOscillator();
+          const thumpGain = ctx.createGain();
+          thumpOsc.type = 'triangle';
+          thumpOsc.frequency.setValueAtTime(320, curr);
+          thumpOsc.frequency.exponentialRampToValueAtTime(34, curr + 0.17);
+
+          thumpGain.gain.setValueAtTime(0.95, curr);
+          thumpGain.gain.exponentialRampToValueAtTime(0.001, curr + 0.17);
+
+          thumpOsc.connect(thumpGain);
+          thumpGain.connect(sfxGainNode);
+          thumpOsc.start(curr);
+          thumpOsc.stop(curr + 0.17);
+
+          // 4. Celebratory Crystal Chime Note for the revealed word
+          const chimeFreqs = [587.33, 659.25, 783.99, 1046.50];
+          const chimeFreq = chimeFreqs[(index - 1) % chimeFreqs.length];
+          setTimeout(() => {
+            if (!soundEnabled) return;
+            const cCtx = getAudioContext();
+            if (!cCtx || !sfxGainNode) return;
+            const cCurr = cCtx.currentTime;
+
+            const cOsc = cCtx.createOscillator();
+            const cGain = cCtx.createGain();
+            cOsc.type = 'sine';
+            cOsc.frequency.setValueAtTime(chimeFreq, cCurr);
+            cGain.gain.setValueAtTime(0.35, cCurr);
+            cGain.gain.exponentialRampToValueAtTime(0.0001, cCurr + 0.45);
+
+            // Shimmer overtone
+            const cOsc2 = cCtx.createOscillator();
+            const cGain2 = cCtx.createGain();
+            cOsc2.type = 'sine';
+            cOsc2.frequency.setValueAtTime(chimeFreq * 2, cCurr);
+            cGain2.gain.setValueAtTime(0.18, cCurr);
+            cGain2.gain.exponentialRampToValueAtTime(0.0001, cCurr + 0.35);
+
+            cOsc.connect(cGain);
+            cGain.connect(sfxGainNode);
+            cOsc2.connect(cGain2);
+            cGain2.connect(sfxGainNode);
+
+            cOsc.start(cCurr);
+            cOsc2.start(cCurr);
+            cOsc.stop(cCurr + 0.46);
+            cOsc2.stop(cCurr + 0.46);
+          }, 35);
+
+          // 5. Physical screen impact
+          document.body.classList.add('pop-shake');
+          setTimeout(() => document.body.classList.remove('pop-shake'), 180);
         } catch (e) {}
       }
 
@@ -2136,7 +2698,7 @@
         if (!soundEnabled) return;
         try {
           const ctx = getAudioContext();
-          if (!ctx) return;
+          if (!ctx || !sfxGainNode) return;
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'sine';
@@ -2145,7 +2707,7 @@
           gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.035);
 
           osc.connect(gain);
-          gain.connect(ctx.destination);
+          gain.connect(sfxGainNode);
           osc.start();
           osc.stop(ctx.currentTime + 0.035);
         } catch (e) {}
@@ -2155,7 +2717,7 @@
         if (!soundEnabled) return;
         try {
           const ctx = getAudioContext();
-          if (!ctx) return;
+          if (!ctx || !sfxGainNode) return;
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'triangle';
@@ -2166,7 +2728,7 @@
           gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
 
           osc.connect(gain);
-          gain.connect(ctx.destination);
+          gain.connect(sfxGainNode);
           osc.start();
           osc.stop(ctx.currentTime + 0.14);
         } catch (e) {}
@@ -2190,41 +2752,119 @@
         } catch (e) {}
       }
 
-      const birthdayMelody = [
-        { f: 261.63, d: 0.35 }, { f: 261.63, d: 0.25 }, { f: 293.66, d: 0.6 },
-        { f: 261.63, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 329.63, d: 1.0 },
-        { f: 261.63, d: 0.35 }, { f: 261.63, d: 0.25 }, { f: 293.66, d: 0.6 },
-        { f: 261.63, d: 0.6 }, { f: 392.00, d: 0.6 }, { f: 349.23, d: 1.0 },
-        { f: 261.63, d: 0.35 }, { f: 261.63, d: 0.25 }, { f: 523.25, d: 0.6 },
-        { f: 440.00, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 329.63, d: 0.6 },
-        { f: 293.66, d: 0.8 }, { f: 466.16, d: 0.35 }, { f: 466.16, d: 0.25 },
-        { f: 440.00, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 392.00, d: 0.6 },
-        { f: 349.23, d: 1.3 }
+      // ================= HARMONIC MUSIC-BOX BIRTHDAY SCORE =================
+      // Polyphonic Score: Melody + Harmony Chords + Resonant Bassline
+      const richBirthdayScore = [
+        // Phrase 1: "Happy Birthday to you"
+        { t: 0.00, f: 392.00, d: 0.36, v: 0.50 }, // G4 (Melody)
+        { t: 0.00, f: 130.81, d: 1.10, v: 0.40 }, // C3 (Bass)
+        { t: 0.00, f: 329.63, d: 0.80, v: 0.28 }, // E4 (Harmony)
+        { t: 0.38, f: 392.00, d: 0.28, v: 0.45 }, // G4
+        { t: 0.72, f: 440.00, d: 0.55, v: 0.55 }, // A4
+        { t: 0.72, f: 349.23, d: 0.55, v: 0.28 }, // F4
+        { t: 1.32, f: 392.00, d: 0.55, v: 0.50 }, // G4
+        { t: 1.32, f: 329.63, d: 0.55, v: 0.28 }, // E4
+        { t: 1.92, f: 523.25, d: 0.60, v: 0.60 }, // C5
+        { t: 1.92, f: 130.81, d: 1.20, v: 0.40 }, // C3 (Bass)
+        { t: 2.58, f: 493.88, d: 1.15, v: 0.55 }, // B4
+        { t: 2.58, f: 98.00,  d: 1.10, v: 0.38 }, // G2 (Bass)
+        { t: 2.58, f: 293.66, d: 0.90, v: 0.26 }, // D4
+
+        // Phrase 2: "Happy Birthday to you"
+        { t: 3.85, f: 392.00, d: 0.36, v: 0.50 }, // G4
+        { t: 3.85, f: 98.00,  d: 1.00, v: 0.38 }, // G2 (Bass)
+        { t: 3.85, f: 293.66, d: 0.80, v: 0.26 }, // D4
+        { t: 4.23, f: 392.00, d: 0.28, v: 0.45 }, // G4
+        { t: 4.57, f: 440.00, d: 0.55, v: 0.55 }, // A4
+        { t: 4.57, f: 349.23, d: 0.55, v: 0.28 }, // F4
+        { t: 5.17, f: 392.00, d: 0.55, v: 0.50 }, // G4
+        { t: 5.17, f: 293.66, d: 0.55, v: 0.26 }, // D4
+        { t: 5.77, f: 587.33, d: 0.60, v: 0.60 }, // D5
+        { t: 5.77, f: 98.00,  d: 1.20, v: 0.40 }, // G2 (Bass)
+        { t: 6.43, f: 523.25, d: 1.15, v: 0.55 }, // C5
+        { t: 6.43, f: 130.81, d: 1.20, v: 0.40 }, // C3 (Bass)
+        { t: 6.43, f: 329.63, d: 0.90, v: 0.28 }, // E4
+
+        // Phrase 3: "Happy Birthday dear Pranamya" (Grand Climax)
+        { t: 7.70, f: 392.00, d: 0.36, v: 0.50 }, // G4
+        { t: 7.70, f: 130.81, d: 1.00, v: 0.40 }, // C3 (Bass)
+        { t: 8.08, f: 392.00, d: 0.28, v: 0.45 }, // G4
+        { t: 8.42, f: 783.99, d: 0.70, v: 0.70 }, // G5 (High Crystal Chime!)
+        { t: 8.42, f: 659.25, d: 0.70, v: 0.35 }, // E5
+        { t: 8.42, f: 130.81, d: 1.20, v: 0.42 }, // C3 (Bass)
+        { t: 9.18, f: 659.25, d: 0.55, v: 0.60 }, // E5
+        { t: 9.18, f: 523.25, d: 0.55, v: 0.30 }, // C5
+        { t: 9.78, f: 523.25, d: 0.55, v: 0.55 }, // C5
+        { t: 9.78, f: 87.31,  d: 1.20, v: 0.40 }, // F2 (Bass)
+        { t: 9.78, f: 440.00, d: 0.55, v: 0.28 }, // A4
+        { t: 10.38, f: 493.88, d: 0.55, v: 0.52 }, // B4
+        { t: 10.38, f: 392.00, d: 0.55, v: 0.26 }, // G4
+        { t: 10.98, f: 440.00, d: 0.65, v: 0.55 }, // A4
+        { t: 10.98, f: 87.31,  d: 0.90, v: 0.38 }, // F2
+        { t: 10.98, f: 349.23, d: 0.65, v: 0.28 }, // F4
+
+        // Phrase 4: "Happy Birthday to you" (Sweet Final Resolution)
+        { t: 11.72, f: 698.46, d: 0.36, v: 0.60 }, // F5
+        { t: 11.72, f: 98.00,  d: 1.00, v: 0.38 }, // G2 (Bass)
+        { t: 11.72, f: 587.33, d: 0.80, v: 0.30 }, // D5
+        { t: 12.10, f: 698.46, d: 0.28, v: 0.50 }, // F5
+        { t: 12.44, f: 659.25, d: 0.55, v: 0.58 }, // E5
+        { t: 12.44, f: 523.25, d: 0.55, v: 0.30 }, // C5
+        { t: 13.04, f: 523.25, d: 0.55, v: 0.55 }, // C5
+        { t: 13.04, f: 392.00, d: 0.55, v: 0.28 }, // G4
+        { t: 13.64, f: 587.33, d: 0.60, v: 0.60 }, // D5
+        { t: 13.64, f: 98.00,  d: 1.10, v: 0.38 }, // G2 (Bass)
+        { t: 13.64, f: 493.88, d: 0.60, v: 0.28 }, // B4
+        { t: 14.30, f: 523.25, d: 1.60, v: 0.65 }, // C5 (Grand resolution)
+        { t: 14.30, f: 130.81, d: 1.90, v: 0.42 }, // C3 (Bass)
+        { t: 14.30, f: 329.63, d: 1.50, v: 0.32 }, // E4
+        { t: 14.30, f: 392.00, d: 1.50, v: 0.32 }, // G4
+
+        // Delicate Music Box Sparkle Flourish
+        { t: 15.20, f: 392.00, d: 0.40, v: 0.32 }, // G4
+        { t: 15.45, f: 523.25, d: 0.45, v: 0.38 }, // C5
+        { t: 15.70, f: 659.25, d: 0.70, v: 0.45 }  // E5
       ];
 
-      // CONTINUOUS BACKGROUND HAPPY BIRTHDAY TONE (RICH VOLUME)
+      const TOTAL_SONG_DURATION = 16.5;
+
+      // CONTINUOUS BACKGROUND HAPPY BIRTHDAY TONE (NON-OVERLAPPING STRICT QUEUE)
+      function stopBirthdaySong() {
+        activeMusicTimeouts.forEach(id => clearTimeout(id));
+        activeMusicTimeouts = [];
+        isMusicLoopRunning = false;
+      }
+
       function startBirthdaySong() {
         if (!musicPlaying) return;
-        clearTimeout(musicTimeout);
-        let cumulativeTime = 0;
+        // 1. Strict Stop to guarantee ZERO overlapping
+        stopBirthdaySong();
+        isMusicLoopRunning = true;
 
-        birthdayMelody.forEach((note, index) => {
-          const t = setTimeout(() => {
-            if (!musicPlaying) return;
-            // Good volume rich harmonic music-box tone!
-            playTone(note.f, note.d * 1.05, 'triangle', 0.3);
-            if (index === birthdayMelody.length - 1 && musicPlaying) {
-              // Seamless loop always in background
-              musicTimeout = setTimeout(startBirthdaySong, 1200);
-            }
-          }, cumulativeTime * 1000);
-          cumulativeTime += note.d * 1.15;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        // Schedule all polyphonic notes
+        richBirthdayScore.forEach(note => {
+          const tid = setTimeout(() => {
+            if (!musicPlaying || !isMusicLoopRunning) return;
+            playMusicBoxBell(note.f, note.d, note.v);
+          }, note.t * 1000);
+          activeMusicTimeouts.push(tid);
         });
+
+        // Schedule seamless loop
+        const loopTid = setTimeout(() => {
+          if (musicPlaying && isMusicLoopRunning) {
+            startBirthdaySong();
+          }
+        }, (TOTAL_SONG_DURATION + 1.2) * 1000);
+        activeMusicTimeouts.push(loopTid);
       }
 
       function ensureBgMusic() {
         const ctx = getAudioContext();
-        if (ctx && musicPlaying && !musicTimeout) {
+        if (ctx && musicPlaying && !isMusicLoopRunning) {
           const musicBtn = document.getElementById('musicBtn');
           if (musicBtn) {
             musicBtn.innerHTML = '🎶';
@@ -2234,25 +2874,36 @@
         }
       }
 
-      // Auto-start and maintain background music on ANY user interaction
-      document.addEventListener('click', ensureBgMusic);
-      document.addEventListener('touchstart', ensureBgMusic);
-      document.addEventListener('keydown', ensureBgMusic);
+      // Auto-start and maintain background music without duplicate triggering
+      document.addEventListener('click', ensureBgMusic, { passive: true });
+      document.addEventListener('touchstart', ensureBgMusic, { passive: true });
+      document.addEventListener('keydown', ensureBgMusic, { passive: true });
 
       function toggleMusic() {
         musicPlaying = !musicPlaying;
         const musicBtn = document.getElementById('musicBtn');
+        const ctx = getAudioContext();
         if (musicPlaying) {
-          getAudioContext();
-          musicBtn.innerHTML = '🎶';
-          musicBtn.style.background = 'rgba(255, 51, 102, 0.4)';
+          if (musicGainNode && ctx) {
+            musicGainNode.gain.cancelScheduledValues(ctx.currentTime);
+            musicGainNode.gain.setValueAtTime(0.24, ctx.currentTime);
+          }
+          if (musicBtn) {
+            musicBtn.innerHTML = '🎶';
+            musicBtn.style.background = 'rgba(255, 51, 102, 0.4)';
+          }
           startBirthdaySong();
           showToast('🎵 Birthday music playing! ✨');
         } else {
-          clearTimeout(musicTimeout);
-          musicTimeout = null;
-          musicBtn.innerHTML = '🎵';
-          musicBtn.style.background = 'rgba(255, 255, 255, 0.12)';
+          stopBirthdaySong();
+          if (musicGainNode && ctx) {
+            musicGainNode.gain.cancelScheduledValues(ctx.currentTime);
+            musicGainNode.gain.setValueAtTime(0, ctx.currentTime);
+          }
+          if (musicBtn) {
+            musicBtn.innerHTML = '🎵';
+            musicBtn.style.background = 'rgba(255, 255, 255, 0.12)';
+          }
           showToast('Music paused');
         }
       }
@@ -2282,10 +2933,71 @@
       setInterval(createSparkle, 750);
       for (let i = 0; i < 8; i++) setTimeout(createSparkle, i * 350);
 
-      // ================= HEART PROXIMITY GLOW =================
+      // ================= HEART PROXIMITY GLOW & CONTINUOUS CONFETTI =================
       const heartContainer = document.getElementById('heartContainer');
       const heartHalo = document.getElementById('heartHalo');
       const heartSvg = document.getElementById('heartSvg');
+
+      let heartBrightTimer = null;
+      let heartConfettiInterval = null;
+      let isHeartConfettiStreaming = false;
+
+      function triggerHeartConfetti(isGrand = false) {
+        if (!heartContainer) return;
+        const rect = heartContainer.getBoundingClientRect();
+        const originX = (rect.left + rect.width / 2) / window.innerWidth;
+        const originY = (rect.top + rect.height / 2) / window.innerHeight;
+
+        confetti({
+          particleCount: isGrand ? 50 : 25,
+          spread: isGrand ? 80 : 65,
+          angle: 60 + Math.random() * 60,
+          origin: { x: originX, y: originY },
+          colors: ['#ff3366', '#ffd166', '#ffffff', '#ff758c', '#ff2a6d'],
+          scalar: 1.15
+        });
+      }
+
+      function startContinuousHeartConfetti() {
+        if (isHeartConfettiStreaming) return;
+        isHeartConfettiStreaming = true;
+
+        if (heartContainer) {
+          heartContainer.classList.add('streaming-confetti');
+        }
+
+        // Instant celebratory chime + first burst
+        playTone(659.25, 0.45, 'triangle', 0.22);
+        setTimeout(() => playTone(880, 0.55, 'triangle', 0.25), 150);
+        triggerHeartConfetti(true);
+        showToast('💖 Continuous Love Shower! You make the heart shine brightest! ✨');
+
+        // Continuous shower stream every 260ms
+        heartConfettiInterval = setInterval(() => {
+          if (!isHeartConfettiStreaming) {
+            clearInterval(heartConfettiInterval);
+            return;
+          }
+          triggerHeartConfetti(false);
+        }, 260);
+      }
+
+      function stopContinuousHeartConfetti() {
+        if (heartBrightTimer) {
+          clearTimeout(heartBrightTimer);
+          heartBrightTimer = null;
+        }
+        if (heartConfettiInterval) {
+          clearInterval(heartConfettiInterval);
+          heartConfettiInterval = null;
+        }
+        if (isHeartConfettiStreaming) {
+          isHeartConfettiStreaming = false;
+          if (heartContainer) {
+            heartContainer.classList.remove('streaming-confetti');
+          }
+        }
+      }
 
       document.addEventListener('mousemove', (e) => {
         if (!heartContainer) return;
@@ -2293,30 +3005,59 @@
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
         const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-        const maxDist = 360;
+        const maxDist = 440;
         const proximity = Math.max(0, 1 - dist / maxDist);
 
-        const scale = 1 + proximity * 0.22;
-        const glowBlur = 12 + proximity * 42;
-        const goldGlow = proximity * 28;
-        const haloOpacity = 0.25 + proximity * 0.75;
-        const haloScale = 0.85 + proximity * 0.55;
+        const scale = 1 + proximity * 0.18;
+        const glowBlur = 18 + proximity * 48;
+        const goldGlow = proximity * 36;
+        const haloOpacity = 0.35 + proximity * 0.65;
+        const haloScale = 0.92 + proximity * 0.52;
 
-        heartSvg.style.transform = `scale(${scale})`;
-        heartSvg.style.filter = `drop-shadow(0 0 ${glowBlur}px rgba(255, 51, 102, ${0.4 + proximity * 0.6})) drop-shadow(0 0 ${goldGlow}px rgba(255, 209, 102, ${proximity * 0.85}))`;
+        if (!isHeartConfettiStreaming) {
+          heartSvg.style.transform = `scale(${scale})`;
+        }
+        heartSvg.style.filter = `drop-shadow(0 15px 35px rgba(255, 51, 102, ${0.45 + proximity * 0.55})) drop-shadow(0 0 ${glowBlur}px rgba(255, 51, 102, ${0.4 + proximity * 0.6})) drop-shadow(0 0 ${goldGlow}px rgba(255, 209, 102, ${proximity * 0.9}))`;
         heartHalo.style.opacity = haloOpacity;
         heartHalo.style.transform = `scale(${haloScale})`;
+
+        // Glows brightest condition: cursor within peak proximity (>= 0.84) or directly over heart stage
+        const isHoveringHeart = (
+          e.clientX >= rect.left && e.clientX <= rect.right &&
+          e.clientY >= rect.top && e.clientY <= rect.bottom
+        );
+        const isBrightest = proximity >= 0.84 || isHoveringHeart;
+
+        if (isBrightest) {
+          if (!heartBrightTimer && !isHeartConfettiStreaming) {
+            // Heart glows brightest: start 1 full second countdown
+            heartBrightTimer = setTimeout(() => {
+              startContinuousHeartConfetti();
+            }, 1000);
+          }
+        } else {
+          // Cursor moved away: stop countdown and stop continuous confetti
+          stopContinuousHeartConfetti();
+        }
       });
 
+      // Touch support for mobile devices
+      heartContainer.addEventListener('touchstart', () => {
+        if (!heartBrightTimer && !isHeartConfettiStreaming) {
+          heartBrightTimer = setTimeout(() => {
+            startContinuousHeartConfetti();
+          }, 1000);
+        }
+      }, { passive: true });
+
+      heartContainer.addEventListener('touchend', () => {
+        stopContinuousHeartConfetti();
+      }, { passive: true });
+
       heartContainer.addEventListener('click', () => {
-        playTone(659.25, 0.4, 'triangle', 0.2);
-        confetti({
-          particleCount: 25,
-          spread: 60,
-          origin: { y: 0.5 },
-          colors: ['#ff3366', '#ffd166', '#ffffff']
-        });
-        showToast('💖 A heart full of love for Pranamya! ✨');
+        playTone(659.25, 0.45, 'triangle', 0.24);
+        triggerHeartConfetti(true);
+        showToast('💖 A huge heart full of love for Pranamya! ✨');
       });
 
       // ================= SMOOTH DODGING "NO" BUTTON =================
@@ -2467,25 +3208,27 @@
       function popBalloon(balloonElem, index) {
         balloonElem.classList.add('popped');
         poppedCount++;
-        playPopSound();
 
-        // Local confetti at balloon position
+        // Explosive Balloon Pop Bang Sound (punchy sub thump + sharp crack + crystal chime)
+        playBalloonPopBang(index);
+
+        // Punchy confetti burst at balloon position
         const rect = balloonElem.getBoundingClientRect();
         confetti({
-          particleCount: 35,
-          spread: 60,
+          particleCount: 55,
+          spread: 75,
           origin: {
             x: (rect.left + rect.width / 2) / window.innerWidth,
             y: (rect.top + rect.height / 2) / window.innerHeight
           },
-          colors: ['#ff3366', '#ffd166', '#a855f7', '#ff758c']
+          colors: ['#ff3366', '#ffd166', '#a855f7', '#ff758c', '#ffffff'],
+          scalar: 1.15
         });
 
         // Reveal matching word: 1st-you, 2nd-are, 3rd-so, 4th-special
         const slot = document.getElementById(`slot-${index}`);
         if (slot) {
           slot.classList.add('revealed');
-          playTone(520 + index * 100, 0.25, 'triangle', 0.2);
         }
 
         // Check if all 4 balloons are popped
@@ -2851,7 +3594,6 @@
       const unfoldingLetter = document.getElementById('unfoldingLetter');
       const letterContent = document.getElementById('letterContent');
       const closeLetterBtn = document.getElementById('closeLetterBtn');
-      const refoldLetterBtn = document.getElementById('refoldLetterBtn');
       const envelopeTriggerBox = document.getElementById('envelopeTriggerBox');
       const reopenEnvelopeBtn = document.getElementById('reopenEnvelopeBtn');
 
@@ -2977,16 +3719,7 @@ Always and forever. ❤️`;
         }, 750);
       }
 
-      function refoldEnvelope() {
-        playTone(440, 0.25, 'triangle', 0.15);
-        unfoldingLetter.classList.remove('is-active');
-        setTimeout(() => {
-          envelopeWrapper.style.display = 'block';
-          envelopeHint.style.display = 'flex';
-          envelopeHint.style.opacity = '1';
-          envelopeWrapper.classList.remove('fade-away', 'opening');
-        }, 280);
-      }
+
 
       function closeLetterModal() {
         playTone(392, 0.2, 'sine', 0.15);
@@ -2994,7 +3727,194 @@ Always and forever. ❤️`;
         if (envelopeTriggerBox) {
           envelopeTriggerBox.style.display = 'block';
         }
-        showToast('💌 Letter kept safe! You can reopen it anytime from below. ✨');
+        showToast('💌 Letter kept safe! Here is something special for you... ✨');
+
+        // AFTER THE LETTER IS CLOSED: SHOW GRAND FINALE SCREEN WITH CUTE CAKE & RAINING HEARTS!
+        setTimeout(() => {
+          showFinaleScreen();
+        }, 400);
+      }
+
+      // ================= GRAND FINALE: CUTE CAKE & RAINING HEARTS =================
+      const finaleScreen = document.getElementById('finaleScreen');
+      const rainingHeartsCanvas = document.getElementById('rainingHeartsCanvas');
+      const cuteCakeWrapper = document.getElementById('cuteCakeWrapper');
+      const finaleReopenLetterBtn = document.getElementById('finaleReopenLetterBtn');
+      const finaleReplayMemoriesBtn = document.getElementById('finaleReplayMemoriesBtn');
+      const finaleShowerLoveBtn = document.getElementById('finaleShowerLoveBtn');
+
+      let isRainingHeartsActive = false;
+      let rainingHeartsAnimId = null;
+      let heartsCanvasCtx = null;
+      let rainParticles = [];
+      const RAIN_EMOJIS = ['💖', '💕', '❤️', '💓', '💗', '✨', '⭐', '✦', '🌸', '🎀'];
+
+      function initRainingHearts() {
+        if (!rainingHeartsCanvas) return;
+        rainingHeartsCanvas.width = window.innerWidth;
+        rainingHeartsCanvas.height = window.innerHeight;
+        heartsCanvasCtx = rainingHeartsCanvas.getContext('2d');
+
+        rainParticles = [];
+        const count = Math.min(65, Math.floor(window.innerWidth / 18));
+        for (let i = 0; i < count; i++) {
+          rainParticles.push({
+            x: Math.random() * rainingHeartsCanvas.width,
+            y: Math.random() * rainingHeartsCanvas.height - rainingHeartsCanvas.height,
+            char: RAIN_EMOJIS[Math.floor(Math.random() * RAIN_EMOJIS.length)],
+            size: Math.random() * 18 + 14,
+            speedY: Math.random() * 2.2 + 1.2,
+            swayAngle: Math.random() * Math.PI * 2,
+            swaySpeed: Math.random() * 0.03 + 0.015,
+            swayWidth: Math.random() * 1.5 + 0.8,
+            rot: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.03,
+            alpha: Math.random() * 0.45 + 0.5
+          });
+        }
+      }
+
+      function startRainingHeartsAndGlitter() {
+        if (isRainingHeartsActive) return;
+        isRainingHeartsActive = true;
+        initRainingHearts();
+
+        function renderRain() {
+          if (!isRainingHeartsActive || !heartsCanvasCtx) return;
+          heartsCanvasCtx.clearRect(0, 0, rainingHeartsCanvas.width, rainingHeartsCanvas.height);
+
+          for (let i = 0; i < rainParticles.length; i++) {
+            const p = rainParticles[i];
+            p.y += p.speedY;
+            p.swayAngle += p.swaySpeed;
+            p.x += Math.sin(p.swayAngle) * p.swayWidth;
+            p.rot += p.rotSpeed;
+
+            if (p.y > rainingHeartsCanvas.height + 40) {
+              p.y = -40;
+              p.x = Math.random() * rainingHeartsCanvas.width;
+            }
+
+            heartsCanvasCtx.save();
+            heartsCanvasCtx.globalAlpha = p.alpha;
+            heartsCanvasCtx.translate(p.x, p.y);
+            heartsCanvasCtx.rotate(p.rot);
+            heartsCanvasCtx.font = `${p.size}px 'Outfit', sans-serif`;
+            heartsCanvasCtx.textAlign = 'center';
+            heartsCanvasCtx.textBaseline = 'middle';
+            heartsCanvasCtx.fillText(p.char, 0, 0);
+            heartsCanvasCtx.restore();
+          }
+
+          rainingHeartsAnimId = requestAnimationFrame(renderRain);
+        }
+
+        rainingHeartsAnimId = requestAnimationFrame(renderRain);
+      }
+
+      function stopRainingHeartsAndGlitter() {
+        isRainingHeartsActive = false;
+        if (rainingHeartsAnimId) {
+          cancelAnimationFrame(rainingHeartsAnimId);
+          rainingHeartsAnimId = null;
+        }
+      }
+
+      window.addEventListener('resize', () => {
+        if (rainingHeartsCanvas && isRainingHeartsActive) {
+          rainingHeartsCanvas.width = window.innerWidth;
+          rainingHeartsCanvas.height = window.innerHeight;
+        }
+      });
+
+      function showFinaleScreen() {
+        if (!finaleScreen) return;
+        const celebrationScreen = document.getElementById('celebrationScreen');
+        if (celebrationScreen) {
+          celebrationScreen.classList.remove('show');
+        }
+        finaleScreen.classList.add('show');
+        startRainingHeartsAndGlitter();
+
+        // Celebratory music fanfare
+        playTone(523.25, 0.35, 'triangle', 0.22);
+        setTimeout(() => playTone(659.25, 0.35, 'triangle', 0.24), 120);
+        setTimeout(() => playTone(783.99, 0.45, 'triangle', 0.26), 240);
+        setTimeout(() => playTone(1046.50, 0.65, 'triangle', 0.28), 360);
+
+        // Confetti burst from cute cake
+        confetti({
+          particleCount: 85,
+          spread: 90,
+          origin: { y: 0.55 },
+          colors: ['#ff758c', '#ffd166', '#ffffff', '#ff2a6d', '#ff9ff3'],
+          scalar: 1.2
+        });
+      }
+
+      if (cuteCakeWrapper) {
+        cuteCakeWrapper.addEventListener('click', () => {
+          cuteCakeWrapper.classList.remove('tapped');
+          void cuteCakeWrapper.offsetWidth; // trigger reflow
+          cuteCakeWrapper.classList.add('tapped');
+
+          playTone(783.99, 0.35, 'triangle', 0.22);
+          setTimeout(() => playTone(1046.50, 0.45, 'triangle', 0.26), 120);
+
+          const rect = cuteCakeWrapper.getBoundingClientRect();
+          confetti({
+            particleCount: 50,
+            spread: 75,
+            origin: {
+              x: (rect.left + rect.width / 2) / window.innerWidth,
+              y: (rect.top + rect.height / 2) / window.innerHeight
+            },
+            colors: ['#ff4757', '#ffd166', '#ff9ff3', '#ffffff', '#ff758c'],
+            scalar: 1.15
+          });
+
+          showToast('🎂 So much sweetness for the sweetest birthday girl! 💕');
+        });
+      }
+
+      if (finaleReopenLetterBtn) {
+        finaleReopenLetterBtn.addEventListener('click', () => {
+          finaleScreen.classList.remove('show');
+          stopRainingHeartsAndGlitter();
+          showMailEnvelope();
+        });
+      }
+
+      if (finaleReplayMemoriesBtn) {
+        finaleReplayMemoriesBtn.addEventListener('click', async () => {
+          finaleScreen.classList.remove('show');
+          stopRainingHeartsAndGlitter();
+          playTone(660, 0.3, 'sine', 0.18);
+          await loadSlides();
+          slideshowModal.classList.add('show');
+          displaySlide(0);
+        });
+      }
+
+      if (finaleShowerLoveBtn) {
+        finaleShowerLoveBtn.addEventListener('click', () => {
+          playTone(880, 0.4, 'triangle', 0.24);
+          confetti({
+            particleCount: 100,
+            angle: 60,
+            spread: 80,
+            origin: { x: 0, y: 0.7 },
+            colors: ['#ff3366', '#ffd166', '#ff758c', '#ffffff']
+          });
+          confetti({
+            particleCount: 100,
+            angle: 120,
+            spread: 80,
+            origin: { x: 1, y: 0.7 },
+            colors: ['#ff007f', '#ffd700', '#ff4757', '#ffffff']
+          });
+          showToast('💖 Continuous Love Showered on Pranamya! ✨');
+        });
       }
 
       if (envelopeWrapper) {
@@ -3009,9 +3929,7 @@ Always and forever. ❤️`;
       if (closeLetterBtn) {
         closeLetterBtn.addEventListener('click', closeLetterModal);
       }
-      if (refoldLetterBtn) {
-        refoldLetterBtn.addEventListener('click', refoldEnvelope);
-      }
+
       if (letterModalBackdrop) {
         letterModalBackdrop.addEventListener('click', closeLetterModal);
       }
